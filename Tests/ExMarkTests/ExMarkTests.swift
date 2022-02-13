@@ -1,11 +1,16 @@
-import XCTest
 @testable import ExMark
+import XCLog
+import XCTest
 
-final class ExMarkTests: XCTestCase {
-//    func testExample() throws {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct
-//        // results.
-//        XCTAssertEqual(Greet(), "Hello!")
-//    }
+class ExMarkTests: XCTestCase {
+    func test_block_code(){
+        let file = """
+        [[code swift
+        let str = "Hello, world!"
+        print(str)
+        ]]
+        """
+        let html = ParseBlocksToHTML(ParseLinesToBlocks(ParseFileToLines(file)))
+        XCLog(.trace, html)
+    }
 }
