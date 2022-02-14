@@ -1,6 +1,10 @@
 # ExMark
 
-Author: [Yang-Xijie](link https://github.com/Yang-Xijie)
+`ExMark` is a newly designed markup language.
+
+Author: [Yang-Xijie](https://github.com/Yang-Xijie)
+
+## Developing Tools
 
 - [HTML test site](https://htmlcodeeditor.com)
 - [regular expression test site](https://regexr.com)
