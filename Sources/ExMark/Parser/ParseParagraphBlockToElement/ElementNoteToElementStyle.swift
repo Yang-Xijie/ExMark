@@ -1,7 +1,7 @@
 import Foundation
 
-func ElementNoteToElementStyle(_ element_note: String) -> [ExMarkElement.ElementStyle] {
-    var result: [ExMarkElement.ElementStyle] = []
+func ElementNoteToElementStyle(_ element_note: String) -> [EMParagraphElement.ElementStyle] {
+    var result: [EMParagraphElement.ElementStyle] = []
 
     if element_note.contains("bold") {
         result.append(.bold)

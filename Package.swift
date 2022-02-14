@@ -12,7 +12,7 @@ let package = Package(
             targets: ["ExMark"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Yang-Xijie/XCLog", .branch("main")),
+        .package(url: "https://github.com/Yang-Xijie/XCLog", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
         .target(

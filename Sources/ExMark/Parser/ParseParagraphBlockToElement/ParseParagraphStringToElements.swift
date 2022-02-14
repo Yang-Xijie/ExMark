@@ -1,7 +1,7 @@
 import Foundation
 
-func ParseParagraphStringToElements(_ paragraph: String) -> [ExMarkElement] {
-    var result: [ExMarkElement] = []
+func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement] {
+    var result: [EMParagraphElement] = []
 
     var i = 0
     var c: Character
@@ -74,14 +74,14 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [ExMarkElement] {
                 if i < paragraph.count {
                     c = paragraph[paragraph.index(paragraph.startIndex, offsetBy: i)]
                 } else {
-                    result.append(ExMarkElement(
+                    result.append(EMParagraphElement(
                         string: element_body, type: .text, style: ElementNoteToElementStyle(element_note)
                     ))
                     break
                 }
 
                 if c == "[" {
-                    result.append(ExMarkElement(
+                    result.append(EMParagraphElement(
                         string: element_body, type: .text, style: ElementNoteToElementStyle(element_note)
                     ))
                     break // no ++

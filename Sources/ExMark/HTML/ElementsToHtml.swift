@@ -1,6 +1,6 @@
 import Foundation
 
-func ElementsToHtml(elements: [ExMarkElement]) -> String {
+func ElementsToHtml(elements: [EMParagraphElement]) -> String {
     var result = ""
 
     for element in elements {
@@ -11,7 +11,7 @@ func ElementsToHtml(elements: [ExMarkElement]) -> String {
     return result
 }
 
-func ElementToHtml(_ element: ExMarkElement) -> String {
+func ElementToHtml(_ element: EMParagraphElement) -> String {
     var result = ""
 
     let element_string = element.string.replacingOccurrences(of: "\n", with: "<br>")
