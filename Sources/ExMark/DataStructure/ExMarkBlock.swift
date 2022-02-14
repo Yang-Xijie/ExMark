@@ -1,37 +1,6 @@
 import Foundation
 
-struct ExDocument {
-    var document: [ExMarkBlock]
-}
-
-struct ExMarkLine: CustomStringConvertible {
-    /// 原始的行数
-    var linenum: Int
-
-    /// 行类型
-    var type: LineType
-    /// 行类型
-    ///
-    /// 其中 `title1-6` `block_start` `line` 的body不为空串
-    enum LineType {
-        case title1, title2, title3, title4, title5, title6
-        case toc, sep
-        case block_start, block_end
-        case enter // 一行什么都没有 去掉\n之后是空字符串
-        case line // 不是上面的几种 单纯的line
-    }
-
-    /// 内容主体 没有时为空字符串
-    var body: String
-
-    // MARK: DEBUG
-
-    var description: String {
-        return "[\(linenum)][\(type)]\(body)"
-    }
-}
-
-struct ExMarkBlock: CustomStringConvertible {
+struct ExMarkBlock {
     init(linenum_start: Int, linenum_end: Int,
          body: String, type: BlockType,
          style: ExMarkBlock.BlockStyle?) {
@@ -84,9 +53,11 @@ struct ExMarkBlock: CustomStringConvertible {
 
         static var common = BlockStyle()
     }
+}
 
-    // MARK: DEBUG
+// MARK: DEBUG
 
+extension ExMarkBlock: CustomStringConvertible {
     var description: String {
         var bodydescription = ""
         if body == "" {
@@ -100,39 +71,5 @@ struct ExMarkBlock: CustomStringConvertible {
         return """
         [\(linenum_start)-\(linenum_end)] [\(type) | \(style == nil ? "nil" : style!.description)] title=\(title ?? "nil"), caption=\(caption ?? "nil")\(bodydescription)
         """
-    }
-}
-
-/// 一般来说 要渲染的一行或一个条目为一个Paragraph
-///
-/// 也就是需要进行行内渲染的称作Paragraph
-///
-/// Paragraph没有style style在blcok层
-
-// typealias??
-// struct ExMarkParagraph {
-//    var body: [ExMarkElement]
-//
-//
-// }
-
-struct ExMarkElement {
-    var string = ""
-
-    var type: ElementType
-    enum ElementType {
-        case text
-        case code, math
-        case image(path: String?)
-        case link(path: String?), file(path: String?)
-//        case anchor(id: String?), to(id: String?)
-    }
-
-    var style: [ElementStyle] = []
-    enum ElementStyle: Equatable {
-        case bold, italic
-        case under, delete
-        case size(multipler: Float) // 0 or 0.x or 1 or 5.0
-        case color, bgcolor // TODO: add feature
     }
 }
