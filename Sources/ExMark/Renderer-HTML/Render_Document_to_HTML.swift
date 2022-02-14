@@ -57,7 +57,6 @@ func Render_Document_to_HTML(_ document: EMDocument) -> HTML {
             // TODO: render to html
             result.append("<pre><code>\(block.body)</code></pre>")
         case .quote:
-            // TODO: 分级结构
             result.append(Render_QuoteBody_to_HTML(quote: block.body))
         case let .table(type, header):
             // TODO: table

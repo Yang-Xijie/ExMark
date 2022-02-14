@@ -1,11 +1,23 @@
 import Foundation
 
-// FIXME: should pass EMBlock in 
+// FIXME: should pass EMBlock in
 
 func Render_QuoteBody_to_HTML(quote: String) -> String {
     var result = ""
 
-    let lines: [String] = quote.components(separatedBy: CharacterSet.newlines)
+    /// seperate lines to line
+    ///
+    /// be careful of:
+    ///
+    /// ```swift
+    /// let str = "apple"
+    /// print(str.components(separatedBy: "e")) // ["appl", ""]
+    /// ```
+    var lines: [String] = quote.components(separatedBy: CharacterSet.newlines)
+
+    if quote.count != 0, quote.last! == "\n" {
+        _ = lines.popLast()
+    }
 
     var i = 0
 
@@ -45,7 +57,7 @@ func Render_QuoteBody_to_HTML(quote: String) -> String {
                 result.append("\(current_line.trimmingCharacters(in: CharacterSet.whitespaces))<br>")
             }
         } else { // last line
-            result.append(current_line.trimmingCharacters(in: CharacterSet.whitespaces))
+            result.append("\(current_line.trimmingCharacters(in: CharacterSet.whitespaces))")
             for _ in 0 ..< existing_left_quote_tag_count {
                 result.append("</blockquote>")
             }
