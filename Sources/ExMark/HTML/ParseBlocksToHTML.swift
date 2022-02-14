@@ -1,6 +1,6 @@
 import Foundation
 
-func ParseBlocksToHTML(_ blocks: [ExMarkBlock]) -> String {
+func ParseBlocksToHTML(_ blocks: [EMBlock]) -> String {
     var result = ""
 
     for block in blocks {

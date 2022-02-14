@@ -1,3 +1,3 @@
 import Foundation
 
-typealias ExDocument = [ExMarkBlock]
+typealias EMDocument = [EMBlock]

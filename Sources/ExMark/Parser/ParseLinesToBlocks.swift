@@ -1,7 +1,7 @@
 import Foundation
 
-func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
-    var result: [ExMarkBlock] = []
+func ParseLinesToBlocks(_ lines: [EMLine]) -> [EMBlock] {
+    var result: [EMBlock] = []
 
     var docHasAppeared = false
 
@@ -16,7 +16,7 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
         if current_line.type == .title1 || current_line.type == .title2 || current_line.type == .title3 || current_line.type == .title4 || current_line.type == .title5 || current_line.type == .title6 ||
             current_line.type == .toc || current_line.type == .sep
         {
-            var block_type: ExMarkBlock.BlockType
+            var block_type: EMBlock.BlockType
             switch current_line.type {
             case .title1:
                 block_type = .title1
@@ -37,7 +37,7 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
             default:
                 fatalError()
             }
-            result.append(ExMarkBlock(
+            result.append(EMBlock(
                 linenum_start: current_line.linenum, linenum_end: current_line.linenum,
                 body: current_line.body,
                 type: block_type,
@@ -46,14 +46,14 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
         } else {
             switch current_line.type {
             case .enter: // FIXME
-                result.append(ExMarkBlock(
+                result.append(EMBlock(
                     linenum_start: current_line.linenum, linenum_end: current_line.linenum,
                     body: "",
                     type: .enter,
                     style: nil // enter don't need style
                 ))
             case .line:
-                result.append(ExMarkBlock(
+                result.append(EMBlock(
                     linenum_start: current_line.linenum, linenum_end: current_line.linenum,
                     body: current_line.body,
                     type: .paragraph(align: nil),
@@ -65,8 +65,8 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
             case .block_start:
                 var block_linenum_start: Int
                 var block_linenum_end: Int
-                var block_type: ExMarkBlock.BlockType
-                var block_style: ExMarkBlock.BlockStyle?
+                var block_type: EMBlock.BlockType
+                var block_style: EMBlock.BlockStyle?
 
                 let note = current_line.body
 
@@ -151,7 +151,7 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
                 block_linenum_end = current_index
 
                 if block_type == .doc, docHasAppeared == false {
-                    result.append(ExMarkBlock(
+                    result.append(EMBlock(
                         linenum_start: block_linenum_start, linenum_end: block_linenum_end,
                         body: block_body,
                         type: block_type,
@@ -159,7 +159,7 @@ func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
                     ))
                     docHasAppeared = true
                 } else if block_type != .doc {
-                    result.append(ExMarkBlock(
+                    result.append(EMBlock(
                         linenum_start: block_linenum_start, linenum_end: block_linenum_end,
                         body: block_body,
                         type: block_type,

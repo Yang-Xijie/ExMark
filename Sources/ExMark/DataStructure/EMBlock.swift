@@ -1,9 +1,9 @@
 import Foundation
 
-struct ExMarkBlock {
+struct EMBlock {
     init(linenum_start: Int, linenum_end: Int,
          body: String, type: BlockType,
-         style: ExMarkBlock.BlockStyle?) {
+         style: EMBlock.BlockStyle?) {
         self.linenum_start = linenum_start
         self.linenum_end = linenum_end
         self.body = body
@@ -57,7 +57,7 @@ struct ExMarkBlock {
 
 // MARK: DEBUG
 
-extension ExMarkBlock: CustomStringConvertible {
+extension EMBlock: CustomStringConvertible {
     var description: String {
         var bodydescription = ""
         if body == "" {

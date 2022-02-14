@@ -1,3 +1,3 @@
 import Foundation
 
-typealias ExMarkParagraph = [EMParagraphElement]
+typealias EMParagraph = [EMParagraphElement]
