@@ -1,12 +1,12 @@
 import Foundation
 
-func ParseLinesToBlocks(_ lines: [ExMarkLine]) -> [ExMarkBlock] {
+func ParseLinesToBlocks(_ lines: [EMLine]) -> [ExMarkBlock] {
     var result: [ExMarkBlock] = []
 
     var docHasAppeared = false
 
     var current_index = 0
-    var current_line: ExMarkLine
+    var current_line: EMLine
 
     while current_index < lines.count {
         current_line = lines[current_index]
