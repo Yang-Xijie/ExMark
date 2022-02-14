@@ -48,8 +48,8 @@ func ParseLinesToBlocks(_ lines: [ExMarkLine]) -> [ExMarkBlock] {
             case .enter: // FIXME
                 result.append(ExMarkBlock(
                     linenum_start: current_line.linenum, linenum_end: current_line.linenum,
-                    body: "\n",
-                    type: .paragraph(align: nil),
+                    body: "",
+                    type: .enter,
                     style: nil // enter don't need style
                 ))
             case .line:

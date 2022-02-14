@@ -33,12 +33,14 @@ func ParseBlocksToHTML(_ blocks: [ExMarkBlock]) -> String {
 
         case .toc:
             // TODO: toc
-            result.append("<p>---toc---</p>\n")
+            result.append("<p>---toc---</p>")
         case .sep:
             result.append("<hr>\n")
         case .doc:
             // TODO: doc
-            result.append("<pre><code>\(block.body)</code></pre>\n")
+            result.append("<pre><code>\(block.body)</code></pre>")
+        case .enter:
+            result.append("<br>")
 
         // MARK: blocks
 
@@ -47,19 +49,19 @@ func ParseBlocksToHTML(_ blocks: [ExMarkBlock]) -> String {
                 // TODO: 每一行前面加上序号
             }
             // TODO: add js
-            result.append("<pre><code\(language == nil ? ">" : "class=\"language-\(language!)\">")\(htmlcontent)</code></pre>\n")
+            result.append("<pre><code\(language == nil ? ">" : "class=\"language-\(language!)\">")\(htmlcontent)</code></pre>")
         case .math:
             // TODO: use block.body to render latex
-            result.append("<pre><code>\(block.body)</code></pre>\n")
+            result.append("<pre><code>\(block.body)</code></pre>")
         case let .list(ordered):
             // TODO: render to html
-            result.append("<pre><code>\(block.body)</code></pre>\n")
+            result.append("<pre><code>\(block.body)</code></pre>")
         case .quote:
             // TODO: 分级结构
             result.append(QuoteToHtml(quote: block.body))
         case let .table(type, header):
             // TODO: table
-            result.append("<pre><code>\(htmlcontent)</code></pre>\n")
+            result.append("<pre><code>\(htmlcontent)</code></pre>")
 
         // MARK: paragraph
 
@@ -70,13 +72,13 @@ func ParseBlocksToHTML(_ blocks: [ExMarkBlock]) -> String {
 
             switch align {
             case .left:
-                result.append("<p align=\"left\">\(paragraph_html)</p>\n")
+                result.append("<p align=\"left\">\(paragraph_html)</p>")
             case nil:
-                result.append("<p align=\"left\">\(paragraph_html)</p>\n")
+                result.append("<p align=\"left\">\(paragraph_html)</p>")
             case .center:
-                result.append("<center>\(paragraph_html)</center>\n")
+                result.append("<center>\(paragraph_html)</center>")
             case .right:
-                result.append("<p align=\"right\">\(paragraph_html)</p>\n")
+                result.append("<p align=\"right\">\(paragraph_html)</p>")
             }
         }
     }

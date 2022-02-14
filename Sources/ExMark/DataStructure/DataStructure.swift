@@ -55,7 +55,7 @@ struct ExMarkBlock: CustomStringConvertible {
     var type: BlockType
     enum BlockType: Equatable {
         case title1, title2, title3, title4, title5, title6
-        case toc, sep
+        case toc, sep, enter
         case doc
         case code(language: String?, number: Bool = false), math
         case list(ordered: Bool = false), quote, table(type: TableType = .exmark, header: Bool = true)
