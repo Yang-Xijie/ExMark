@@ -3,6 +3,34 @@ import XCLog
 import XCTest
 
 class Test_block_code: XCTestCase {
+    func test_noCode() {
+        let file = """
+        [[
+        content
+        ]]
+        """
+        let ans = """
+        <pre><code>content<br></code></pre>
+        """
+
+        let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
+        XCTAssertEqual(html, ans)
+    }
+
+    func test_noLanguage() {
+        let file = """
+        [[code
+        content
+        ]]
+        """
+        let ans = """
+        <pre><code>content<br></code></pre>
+        """
+
+        let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
+        XCTAssertEqual(html, ans)
+    }
+
     func test_languageSwift() {
         let file = """
         [[code swift
@@ -20,7 +48,7 @@ class Test_block_code: XCTestCase {
 
     func test_languageShell() {
         let file = """
-        [[code sh -n
+        [[code sh
         echo "Hello, world!"
         cat hello.txt
         ]]
@@ -32,36 +60,8 @@ class Test_block_code: XCTestCase {
         let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
         XCTAssertEqual(html, ans)
     }
-    
-    // TODO: func test_languageHTML()
-
-    func test_noLanguage() {
-        let file = """
-        [[code
-        content
-        ]]
-        """
-        let ans = """
-        <pre><code>content<br></code></pre>
-        """
-
-        let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
-        XCTAssertEqual(html, ans)
-    }
-
-    func test_noCode() {
-        let file = """
-        [[
-        content
-        ]]
-        """
-        let ans = """
-        <pre><code>content<br></code></pre>
-        """
-
-        let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
-        XCTAssertEqual(html, ans)
-    }
 
     // TODO: -n parameter
+
+    // TODO: func test_languageHTML()
 }
