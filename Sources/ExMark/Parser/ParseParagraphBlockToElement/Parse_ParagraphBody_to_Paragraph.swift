@@ -1,7 +1,7 @@
 import Foundation
 
-func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement] {
-    var result: [EMParagraphElement] = []
+func Parse_ParagraphBody_to_Paragraph(_ paragraph: EMParagraphBody) -> EMParagraph {
+    var result: EMParagraph = []
 
     var i = 0
     var c: Character
@@ -25,7 +25,7 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement]
                 if i < paragraph.count {
                     c = paragraph[paragraph.index(paragraph.startIndex, offsetBy: i)]
                 } else { // start with [ to end of the line
-                    result.append(.init(string: "[\(element_body)", type: .text, style: ElementNoteToElementStyle(element_note)))
+                    result.append(.init(string: "[\(element_body)", type: .text, style: Parse_ElementNote_to_ElementStyles(element_note)))
                     break
                 }
 
@@ -35,7 +35,7 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement]
                     if i < paragraph.count {
                         c = paragraph[paragraph.index(paragraph.startIndex, offsetBy: i)]
                     } else { // [ ... ]EOL
-                        result.append(.init(string: "[\(element_body)]", type: .text, style: ElementNoteToElementStyle(element_note)))
+                        result.append(.init(string: "[\(element_body)]", type: .text, style: Parse_ElementNote_to_ElementStyles(element_note)))
                         break
                     }
 
@@ -51,7 +51,7 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement]
                             }
 
                             if c == ")" {
-                                result.append(.init(string: "\(element_body)", type: ElementNoteToElementType(element_note), style: ElementNoteToElementStyle(element_note)))
+                                result.append(.init(string: "\(element_body)", type: Parse_ElementNote_to_ElementType(element_note), style: Parse_ElementNote_to_ElementStyles(element_note)))
                                 element_done_flag = true
                                 i += 1
                                 break
@@ -61,7 +61,7 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement]
                             }
                         }
                     } else { // just [ ... ]xxx
-                        result.append(.init(string: "[\(element_body)]", type: .text, style: ElementNoteToElementStyle(element_note)))
+                        result.append(.init(string: "[\(element_body)]", type: .text, style: Parse_ElementNote_to_ElementStyles(element_note)))
                         break
                     }
                 } else { // [ ...
@@ -75,14 +75,14 @@ func ParseParagraphStringToElements(_ paragraph: String) -> [EMParagraphElement]
                     c = paragraph[paragraph.index(paragraph.startIndex, offsetBy: i)]
                 } else {
                     result.append(EMParagraphElement(
-                        string: element_body, type: .text, style: ElementNoteToElementStyle(element_note)
+                        string: element_body, type: .text, style: Parse_ElementNote_to_ElementStyles(element_note)
                     ))
                     break
                 }
 
                 if c == "[" {
                     result.append(EMParagraphElement(
-                        string: element_body, type: .text, style: ElementNoteToElementStyle(element_note)
+                        string: element_body, type: .text, style: Parse_ElementNote_to_ElementStyles(element_note)
                     ))
                     break // no ++
                 } else {

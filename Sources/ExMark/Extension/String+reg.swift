@@ -1,5 +1,3 @@
-// String+reg.swift
-
 import Foundation
 import XCLog
 

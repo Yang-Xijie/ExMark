@@ -1,5 +1,3 @@
-// String+spaceCountAtBeginning.swift
-
 import Foundation
 
 extension String {

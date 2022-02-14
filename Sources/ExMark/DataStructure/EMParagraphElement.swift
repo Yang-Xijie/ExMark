@@ -12,7 +12,8 @@ struct EMParagraphElement {
 //        case anchor(id: String?), to(id: String?)
     }
 
-    var style: [ElementStyle] = []
+    var style: ElementStyles = []
+    typealias ElementStyles = [ElementStyle]
     enum ElementStyle: Equatable {
         case bold, italic
         case under, delete

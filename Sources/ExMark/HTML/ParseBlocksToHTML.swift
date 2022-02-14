@@ -67,7 +67,7 @@ func ParseBlocksToHTML(_ blocks: [EMBlock]) -> String {
 
         case let .paragraph(align):
             // TODO: render line-level element
-            let paragraph_elements = ParseParagraphStringToElements(htmlcontent)
+            let paragraph_elements = Parse_ParagraphBody_to_Paragraph(htmlcontent)
             let paragraph_html = ElementsToHtml(elements: paragraph_elements)
 
             switch align {

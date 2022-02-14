@@ -1,7 +1,7 @@
 import Foundation
 
 /// If there are more than one types, use the first one.
-func ElementNoteToElementType(_ element_note: String) -> EMParagraphElement.ElementType {
+func Parse_ElementNote_to_ElementType(_ element_note: String) -> EMParagraphElement.ElementType {
     let result: EMParagraphElement.ElementType
 
     if element_note == "" {
