@@ -1,7 +1,7 @@
 import Foundation
 
-func ParseFileToLines(_ file: String) -> [EMLine] {
-    var result: [EMLine] = []
+func Parse_File_to_Lines(_ file: String) -> EMLines {
+    var result: EMLines = []
 
     let lines: [String] = file
         .trimmingCharacters(in: CharacterSet.whitespaces) // delete \n at the end of lines

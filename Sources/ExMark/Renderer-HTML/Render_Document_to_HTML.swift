@@ -1,9 +1,9 @@
 import Foundation
 
-func ParseBlocksToHTML(_ blocks: [EMBlock]) -> String {
-    var result = ""
+func Render_Document_to_HTML(_ document: EMDocument) -> HTML {
+    var result: HTML = ""
 
-    for block in blocks {
+    for block in document {
         let htmlcontent: String = block.body
             .replacingOccurrences(of: "&", with: "&amp;")
             .replacingOccurrences(of: "\"", with: "&quot;")
@@ -58,7 +58,7 @@ func ParseBlocksToHTML(_ blocks: [EMBlock]) -> String {
             result.append("<pre><code>\(block.body)</code></pre>")
         case .quote:
             // TODO: 分级结构
-            result.append(QuoteToHtml(quote: block.body))
+            result.append(Render_QuoteBody_to_HTML(quote: block.body))
         case let .table(type, header):
             // TODO: table
             result.append("<pre><code>\(htmlcontent)</code></pre>")
@@ -68,7 +68,7 @@ func ParseBlocksToHTML(_ blocks: [EMBlock]) -> String {
         case let .paragraph(align):
             // TODO: render line-level element
             let paragraph_elements = Parse_ParagraphBody_to_Paragraph(htmlcontent)
-            let paragraph_html = ElementsToHtml(elements: paragraph_elements)
+            let paragraph_html = Render_Paragraph_to_HTML(elements: paragraph_elements)
 
             switch align {
             case .left:

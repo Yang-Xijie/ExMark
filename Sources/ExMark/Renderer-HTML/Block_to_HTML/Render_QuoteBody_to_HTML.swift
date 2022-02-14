@@ -1,6 +1,8 @@
 import Foundation
 
-func QuoteToHtml(quote: String) -> String {
+// FIXME: should pass EMBlock in 
+
+func Render_QuoteBody_to_HTML(quote: String) -> String {
     var result = ""
 
     let lines: [String] = quote.components(separatedBy: CharacterSet.newlines)

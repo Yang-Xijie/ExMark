@@ -1,17 +1,19 @@
 import Foundation
 
-func ElementsToHtml(elements: [EMParagraphElement]) -> String {
+// FIXME: should pass EMBlock in
+
+func Render_Paragraph_to_HTML(elements: EMParagraph) -> String {
     var result = ""
 
     for element in elements {
-        let element_html = ElementToHtml(element)
+        let element_html = Render_Element_to_HTML(element)
         result.append(element_html)
     }
 
     return result
 }
 
-func ElementToHtml(_ element: EMParagraphElement) -> String {
+func Render_Element_to_HTML(_ element: EMParagraphElement) -> String {
     var result = ""
 
     let element_string = element.string.replacingOccurrences(of: "\n", with: "<br>")

@@ -10,7 +10,7 @@ class ExMarkTests: XCTestCase {
         print(str)
         ]]
         """
-        let html = ParseBlocksToHTML(ParseLinesToBlocks(ParseFileToLines(file)))
+        let html = Render_Document_to_HTML(Parse_Lines_to_Document(Parse_File_to_Lines(file)))
         XCLog(.trace, html)
     }
 }

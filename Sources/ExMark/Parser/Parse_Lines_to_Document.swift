@@ -1,7 +1,7 @@
 import Foundation
 
-func ParseLinesToBlocks(_ lines: [EMLine]) -> [EMBlock] {
-    var result: [EMBlock] = []
+func Parse_Lines_to_Document(_ lines: EMLines) -> EMDocument {
+    var result: EMDocument = []
 
     var docHasAppeared = false
 
