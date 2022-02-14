@@ -46,7 +46,7 @@ func Render_Document_to_HTML(_ document: EMDocument) -> HTML {
 
         case let .code(language, number):
             if number == true {
-                // TODO: 每一行前面加上序号
+                // TODO: -n
             }
             // TODO: add js
             result.append("<pre><code\(language == nil ? ">" : " class=\"language-\(language!)\">")\(htmlcontent)</code></pre>")

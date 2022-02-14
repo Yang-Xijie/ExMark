@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_ParagraphAlign: XCTestCase {
+class Test_paragraph_align: XCTestCase {
     func test_common() {
         let file = """
         [[paragraph

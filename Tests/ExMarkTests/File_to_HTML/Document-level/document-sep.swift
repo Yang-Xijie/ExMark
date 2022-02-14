@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_sep: XCTestCase {
+class Test_document_sep: XCTestCase {
     func test_9() {
         let file = """
         ---sep---

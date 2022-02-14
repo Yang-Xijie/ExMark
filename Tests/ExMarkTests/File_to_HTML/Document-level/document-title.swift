@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_title: XCTestCase {
+class Test_document_title: XCTestCase {
     func test_1() {
         let file = """
         # t1

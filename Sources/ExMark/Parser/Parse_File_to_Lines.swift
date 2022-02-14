@@ -14,7 +14,6 @@ func Parse_File_to_Lines(_ file: String) -> EMLines {
 
     var linenum = 0
 
-    // 生成的顺序是按照行数增加的 不需要再排序了
     for line in lines_array_trimmed {
         if line.count != 0 {
             if line.first! == "#" {

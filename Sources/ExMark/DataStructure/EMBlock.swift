@@ -11,9 +11,7 @@ struct EMBlock {
         self.style = style
     }
 
-    /// 块所在的原始行
     var linenum_start: Int = -1
-    /// 块所在的原始行
     var linenum_end: Int = -1
 
     var body = ""
@@ -27,7 +25,7 @@ struct EMBlock {
         case doc
         case code(language: String?, number: Bool = false), math
         case list(ordered: Bool = false), quote, table(type: TableType = .exmark, header: Bool = true)
-        case paragraph(align: ParagraphAlignment? = .left) // 需要直接渲染的一行
+        case paragraph(align: ParagraphAlignment? = .left)
 
         enum TableType {
             case exmark, csv

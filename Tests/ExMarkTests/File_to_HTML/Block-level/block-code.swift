@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_Code: XCTestCase {
+class Test_block_code: XCTestCase {
     func test_languageSwift() {
         let file = """
         [[code swift

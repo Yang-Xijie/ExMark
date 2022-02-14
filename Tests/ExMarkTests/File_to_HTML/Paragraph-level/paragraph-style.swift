@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_ParagraphStyle: XCTestCase {
+class Test_paragraph_style: XCTestCase {
     func test_bold() {
         let file = """
         [b](bold)

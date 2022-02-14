@@ -2,7 +2,7 @@
 import XCLog
 import XCTest
 
-class Test_Block_Quote: XCTestCase {
+class Test_block_quote: XCTestCase {
     func test_common() {
         let file = """
         [[quote
