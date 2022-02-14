@@ -5,10 +5,6 @@ struct ExDocument {
 }
 
 struct ExMarkLine: CustomStringConvertible {
-    var description: String {
-        return "[\(linenum)][\(type)]\(body)"
-    }
-
     /// 原始的行数
     var linenum: Int
 
@@ -27,24 +23,15 @@ struct ExMarkLine: CustomStringConvertible {
 
     /// 内容主体 没有时为空字符串
     var body: String
+
+    // MARK: DEBUG
+
+    var description: String {
+        return "[\(linenum)][\(type)]\(body)"
+    }
 }
 
 struct ExMarkBlock: CustomStringConvertible {
-    var description: String {
-        var bodydescription = ""
-        if body == "" {
-            bodydescription = ""
-        } else if body == "\n" {
-            bodydescription = "\n<enter>"
-        } else {
-            bodydescription = "\n\(body.trimmingCharacters(in: CharacterSet.newlines))"
-        }
-
-        return """
-        [\(linenum_start)-\(linenum_end)] [\(type) | \(style == nil ? "nil" : style!.description)] title=\(title ?? "nil"), caption=\(caption ?? "nil")\(bodydescription)
-        """
-    }
-
     init(linenum_start: Int, linenum_end: Int,
          body: String, type: BlockType,
          style: ExMarkBlock.BlockStyle?) {
@@ -96,6 +83,23 @@ struct ExMarkBlock: CustomStringConvertible {
         var bgcolor: (UInt8, UInt8, UInt8) = (0xFF, 0xFF, 0xFF)
 
         static var common = BlockStyle()
+    }
+
+    // MARK: DEBUG
+
+    var description: String {
+        var bodydescription = ""
+        if body == "" {
+            bodydescription = ""
+        } else if body == "\n" {
+            bodydescription = "\n<enter>"
+        } else {
+            bodydescription = "\n\(body.trimmingCharacters(in: CharacterSet.newlines))"
+        }
+
+        return """
+        [\(linenum_start)-\(linenum_end)] [\(type) | \(style == nil ? "nil" : style!.description)] title=\(title ?? "nil"), caption=\(caption ?? "nil")\(bodydescription)
+        """
     }
 }
 

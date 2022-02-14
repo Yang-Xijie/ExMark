@@ -10,7 +10,7 @@ class ParagraphToHTML: XCTestCase {
         """
         let html = ParseBlocksToHTML(ParseLinesToBlocks(ParseFileToLines(file)))
         let ans = """
-        <p align="left"></p>
+        <br>
         """
 
         XCTAssertEqual(html.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines),
