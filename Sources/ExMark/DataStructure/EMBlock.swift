@@ -20,7 +20,6 @@ struct EMBlock {
     var title: String?
     var caption: String?
 
-    /// 块类型
     var type: BlockType
     enum BlockType: Equatable {
         case title1, title2, title3, title4, title5, title6
